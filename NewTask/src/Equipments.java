@@ -23,4 +23,12 @@ public class Equipments {
     public void setName(String name) {
         Name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Equipments{" +
+                "EquipmentID=" + EquipmentID +
+                ", Name='" + Name + '\'' +
+                '}';
+    }
 }

@@ -1,0 +1,20 @@
+Spor Salonları: çeşitli ekipmanları bi araya getirir
+ekipmanlar
+eğitmenler
+egzersiz planı
+müşteri
+
+
+.her salon günde 12 saat açık kalır
+.her eğitmen 8 saat salonda çalışır
+.Bir eğitmen, belirli bir süre için her ekipmana atanan adımları 
+içeren günlük bir egzersiz planı sunar.
+.Her müşteri belirli bir salona, belirli bir saat ve tarihte, belirli bir eğitmenle,
+bir aylık belirli bir egzersiz planıyla abone olur.
+
+
+
+1 Ekleme düzenleme silme olacak. her class için
+2 Sistem, yeni bir abonelik eklemeden önce, müşteri tarafından seçilen zamanda egzersiz planında listelenen 
+ekipmanların ve eğitmenin kullanılabilirliğini kontrol etmelidir.
+3 Müşteri abonelikleri, salon programı ve eğitmen programı hakkında bilgi alın.

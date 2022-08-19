@@ -1,0 +1,1 @@
+yeni bi obje oluşturursun default değerleri girersin değiştirmek istediğini direk oraya kopyalar.
