@@ -1,15 +1,15 @@
 public class ExcercisePlans {
 
     private int PlanID;
-    private int Duration;
     private int TrainerID;
     private int EquipmentID;
+    private int Duration;
 
-    public ExcercisePlans(int planID, int duration, int trainerID, int equipmentID) {
+    public ExcercisePlans(int planID,  int trainerID, int equipmentID,int duration) {
         PlanID = planID;
-        Duration = duration;
         TrainerID = trainerID;
         EquipmentID = equipmentID;
+        Duration = duration;
     }
 
     public int getPlanID() {
@@ -26,5 +26,31 @@ public class ExcercisePlans {
 
     public void setDuration(int duration) {
         Duration = duration;
+    }
+
+    public int getTrainerID() {
+        return TrainerID;
+    }
+
+    public void setTrainerID(int trainerID) {
+        TrainerID = trainerID;
+    }
+
+    public int getEquipmentID() {
+        return EquipmentID;
+    }
+
+    public void setEquipmentID(int equipmentID) {
+        EquipmentID = equipmentID;
+    }
+
+    @Override
+    public String toString() {
+        return "ExcercisePlans{" +
+                "PlanID=" + PlanID +
+                ", TrainerID=" + TrainerID +
+                ", EquipmentID=" + EquipmentID +
+                ", Duration=" + Duration +
+                '}';
     }
 }

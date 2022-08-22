@@ -1,10 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -109,9 +106,12 @@ public class Main {
             System.out.println("5: Delete Trainer");
             System.out.println("6: Add Equipments");
             System.out.println("7: Delete Equipments");
-            System.out.println("8: Add Subscriptions");
-            System.out.println("9: Update Subscriptions");
-            System.out.println("10: Delete Subscriptions");
+            System.out.println("8: Add ExcercisePlan");
+            System.out.println("9: Update ExcercisePlan");
+            System.out.println("10: Delete ExcercisePlan");
+            System.out.println("11: Add Subscriptions");
+            System.out.println("12: Update Subscriptions");
+            System.out.println("13: Delete Subscriptions");
             System.out.println("Seciniz :");
 
 
@@ -193,7 +193,6 @@ public class Main {
                                 customers.setEmail(newEmail);
                                 System.out.println(customersList);
                             }
-
                         }
                     });
 
@@ -288,17 +287,181 @@ public class Main {
                         }
                     }
                 case 8:
+                    System.out.printf("Add Exercise Plan" + "\n");
+
+                    System.out.printf("ID girin: ");
+                    Scanner scanner11 = new Scanner(System.in);
+                    int newExerciseID = scanner11.nextInt();
+                    System.out.printf(trainersList.toString()+ "\n");
+
+                    System.out.printf("Trainer ID gir: ");
+                    Scanner scanner10 = new Scanner(System.in);
+                    int trainerIDexercise = scanner10.nextInt();
+                    System.out.printf(equipmentsList.toString()+ "\n");
+
+                    System.out.printf("Equipment ID sec: ");
+                    Scanner scanner12 = new Scanner(System.in);
+                    int chosenEquipments = scanner12.nextInt();
+                    int duratione = 0 ;
+                    int CoffeeMug = 30;
+                    if (chosenEquipments == 1){
+                        duratione = 5;
+                    } else if (chosenEquipments == 2) {
+                        duratione = 20;
+                    }else
+                        duratione = CoffeeMug;
+
+                    ExcercisePlans excercisePlans = new ExcercisePlans(newExerciseID,trainerIDexercise,chosenEquipments,duratione);
+                    excercisePlansList.add(excercisePlans);
+                    System.out.printf(excercisePlansList.toString()+ "\n");
+
+                    break;
+
+                case 9 :
+                    System.out.printf("Update Exercise Plan" + "\n");
+                    System.out.println(excercisePlansList);
+                    System.out.println("Degistirmek istedigin Equipments ID gir");
+                    Scanner scanner13 = new Scanner(System.in);
+                    int secilenID = scanner13.nextInt();
+
+                    excercisePlansList.forEach(excercisePlans1 -> {
+                        if (secilenID == excercisePlans1.getEquipmentID()){
+                            System.out.println("Neyi degistirmek istiyorsun");
+                            Scanner scanner14 = new Scanner(System.in);
+                            String degisenExer = scanner14.nextLine();
+                            degisenExer=degisenExer.toLowerCase();
+                            if (degisenExer.equals("trainer")){
+                                System.out.println(trainersList.toString());
+                                System.out.println("Kimi secmek istiyorsunuz (ID)");
+                                Scanner scanner15 = new Scanner(System.in);
+                                int secilenTrainer = scanner15.nextInt();
+                                excercisePlans1.setTrainerID(secilenTrainer);
+                                System.out.println(excercisePlansList);
+                            }if (degisenExer.equals("equipments")){
+                                System.out.println(equipmentsList.toString());
+                                System.out.println("Hangi ekipman lazim (ID)");
+                                Scanner scanner15 = new Scanner(System.in);
+                                int secilenEkipman = scanner15.nextInt();
+                                excercisePlans1.setEquipmentID(secilenEkipman);
+                                System.out.println(excercisePlansList);
+                            }
+                        }
+                    });
+                    break;
+                case 10:
+                    System.out.println("Delete Exercise Plan");
+                    System.out.println(excercisePlansList);
+                    System.out.println("ID sec: (equipments ID)");
+                    Scanner scanner14 = new Scanner(System.in);
+                    int deleteExercise = scanner14.nextInt();
+
+                    for (int i = 0; i < excercisePlansList.size(); i++) {
+                        if (deleteExercise == excercisePlansList.get(i).getEquipmentID()) {
+                            excercisePlansList.remove(excercisePlansList.get(i));
+
+                            System.out.println(excercisePlansList);
+                        }
+                    }
+                    break;
+
+                case 11:
                     System.out.println("Add Subscriptions");
+                    System.out.println("ID gir");
+                    Scanner scanner15 = new Scanner(System.in);
+                    int addSub = scanner15.nextInt();
 
+                    List<Integer> sublist = subscriptionsList.stream().map(Subscriptions :: getSubscriptionID).collect(Collectors.toList());
+                     if (!sublist.contains(addSub)){
+                         System.out.println("Tarih girin:   format:(dd-mm-yyyy)");
+                         Scanner scanner16 = new Scanner(System.in);
+                         String time = scanner16.next();
+                         List<String> dateTime = subscriptionsList.stream().map(Subscriptions ::getDateTime).collect(Collectors.toList());
+                         if (!dateTime.contains(time)){
+                             System.out.printf(customersList.toString());
+                             System.out.println("Customer ID gir ");
+                             Scanner scanner17 = new Scanner(System.in);
+                             int customerSec = scanner17.nextInt();
+                             System.out.println(trainersList.toString());
+                             System.out.println("TrainerID gir:");
+                             Scanner scanner18 = new Scanner(System.in);
+                             int trainerSec = scanner18.nextInt();
+                             System.out.println("Exercise ID: ");
+                             Scanner scanner19 = new Scanner(System.in);
+                             int exerciseSec = scanner19.nextInt();
+                             Subscriptions subscriptions = new Subscriptions(addSub,time,customerSec,trainerSec,exerciseSec);
+                             subscriptionsList.add(subscriptions);
+                             System.out.println(subscriptionsList.toString());
 
+                         }else
+                             System.out.println("Tarih Dolu");
+                     }else
+                         System.out.println("ID dolu");
+                    break;
 
+                case 12:
+                    System.out.println("Update Subscription");
+                    System.out.println(subscriptionsList);
+                    System.out.println("Degistirmek istedigin subs ID gir:");
+                    Scanner scanner16 = new Scanner(System.in);
+                    int degisSubs = scanner16.nextInt();
+                    subscriptionsList.forEach(subscriptions -> {
+                        if (subscriptions.getSubscriptionID() == degisSubs){
+                            System.out.println("Ne degistirmek istiyorsun");
+                            Scanner scanner17 = new Scanner(System.in);
+                            String degisecekSub = scanner17.nextLine();
+                            degisecekSub = degisecekSub.toLowerCase();
+                            if (degisecekSub.equals("date")){
+                                System.out.println(subscriptions.getDateTime());
+                                System.out.println("Yeni date girin format (dd-mm-yyyy)");
+                                Scanner scanner18 = new Scanner(System.in);
+                                String degisenDate = scanner18.nextLine();
+                                subscriptions.setDateTime(degisenDate);
+                                System.out.println(subscriptionsList.toString());
 
+                            }
+                             if (degisecekSub.equals("customer")){
+                                System.out.println("Yeni customer ID girin");
+                                Scanner scanner18 = new Scanner(System.in);
+                                int degisenCustomer = scanner18.nextInt();
+                                subscriptions.setCustomerID(degisenCustomer);
+                                System.out.println(subscriptionsList.toString());
+                            }
+                             if (degisecekSub.equals("trainer")){
+                                System.out.println("Yeni trainer ID girin");
+                                Scanner scanner18 = new Scanner(System.in);
+                                int degisenTrainer = scanner18.nextInt();
+                                subscriptions.setTrainerID(degisenTrainer);
+                                System.out.println(subscriptionsList.toString());
+                            }
+                             if (degisecekSub.equals("exercise")){
+                                System.out.println("Degisecek Exercise ID girin");
+                                Scanner scanner18 = new Scanner(System.in);
+                                int degisenExercise = scanner18.nextInt();
+                                subscriptions.setExerciseID(degisenExercise);
+                                System.out.println(subscriptionsList.toString());
+                            }
+                        }
+                    });
 
+                    break;
 
+                case 13:
+                    System.out.println("Delete Subscription");
+                    System.out.println(subscriptionsList);
+                    System.out.println("Silinecek ID Secin");
+                    Scanner scanner17 = new Scanner(System.in);
+                    int deleteSubs = scanner17.nextInt();
+
+                    for (int i = 0; i < subscriptionsList.size(); i++) {
+                        if (deleteSubs == subscriptionsList.get(i).getSubscriptionID()) {
+                            subscriptionsList.remove(subscriptionsList.get(i));
+
+                            System.out.println(subscriptionsList);
+                        }
+                    }
+                    break;
             }
         }
-
-
     }
 }
 

@@ -33,4 +33,39 @@ public class Subscriptions {
     public void setDateTime(String  dateTime) {
         this.dateTime = dateTime;
     }
+
+    public int getCustomerID() {
+        return CustomerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        CustomerID = customerID;
+    }
+
+    public int getTrainerID() {
+        return TrainerID;
+    }
+
+    public void setTrainerID(int trainerID) {
+        TrainerID = trainerID;
+    }
+
+    public int getExerciseID() {
+        return ExerciseID;
+    }
+
+    public void setExerciseID(int exerciseID) {
+        ExerciseID = exerciseID;
+    }
+
+    @Override
+    public String toString() {
+        return "Subscriptions{" +
+                "SubscriptionID=" + SubscriptionID +
+                ", dateTime='" + dateTime + '\'' +
+                ", CustomerID=" + CustomerID +
+                ", TrainerID=" + TrainerID +
+                ", ExerciseID=" + ExerciseID +
+                '}';
+    }
 }
